@@ -6,17 +6,19 @@
 ############################
 ############################
 import psycopg2
+import yaml
 
 class Database:
 
     def __init__(self):
+        credentials = yaml.load(open("config/database_login.yml"))
         # connect to the mathbot database
         self.session = psycopg2.connect(
-            host = "ec2-3-233-43-103.compute-1.amazonaws.com",
-            database = "d6ecpf8hf6sdte",
-            user = "fmlhlahbtfonwl",
-            port = "5432",
-            password = "b39b8847a5036a2530975f1a366b7901178d3fcfe43d9679532af802010d1553",
+            host = credentials['login']['host'],
+            database = credentials['login']['database'],
+            user = credentials['login']['user'],
+            port = credentials['login']['port'],
+            password = credentials['login']['password'],
         )
 
     def __del__(self):
@@ -43,26 +45,26 @@ class Database:
 
     def increment_correct(self):
         self.custom_query("""
-            UPDATE Person
-            SET correct = correct + 1;
-            WHERE ID = 0;
+            update person
+            set correct = correct + 1;
+            where id = 0;
         """)
 
     def increment_incorrect(self):
         self.custom_query("""
-            UPDATE Person
-            SET incorrect = incorrect + 1;
-            WHERE ID = 0;
+            update Person
+            set incorrect = incorrect + 1;
+            where id = 0;
         """)
 
     def get_correct(self):
         self.custom_query("""
-            SELECT correct FROM Person
-            WHERE ID = 0;
+            select correct from Person
+            where id = 0;
         """)
 
     def get_incorrect(self):
         self.custom_query("""
-            SELECT incorrect FROM Person
-            WHERE ID = 0;
+            select incorrect from Person
+            where id = 0;
         """)
