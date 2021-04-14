@@ -1,0 +1,6 @@
+login:
+    host: ec2-3-233-43-103.compute-1.amazonaws.com
+    database: d6ecpf8hf6sdte
+    user: fmlhlahbtfonwl
+    port: 5432
+    password: b39b8847a5036a2530975f1a366b7901178d3fcfe43d9679532af802010d1553
