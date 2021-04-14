@@ -43,22 +43,22 @@ class Database:
 
     def increment_correct(self):
         self.custom_query("""
-            UPDATE Person
-            SET correct = correct + 1;
-            WHERE ID = 0;
+            update person
+            set correct = correct + 1;
+            where ID = 0;
         """)
 
     def increment_incorrect(self):
         self.custom_query("""
-            UPDATE Person
-            SET incorrect = incorrect + 1;
-            WHERE ID = 0;
+            update Person
+            set incorrect = incorrect + 1;
+            where ID = 0;
         """)
 
     def get_correct(self):
         self.custom_query("""
-            SELECT correct FROM Person
-            WHERE ID = 0;
+            select correct FROM Person
+            where ID = 0;
         """)
 
     def get_incorrect(self):
