@@ -1,5 +1,6 @@
 import discord
 import random
+import asyncio
 from discord.ext import commands
 from equation_generator import EquationGenerator
 
@@ -32,17 +33,18 @@ async def math(ctx):
     def check(m):
         return m.author.id == ctx.author.id
     
-    message = await client.wait_for('message', check = check, timeout=3.0)
+    try:
+        message = await client.wait_for('message', check = check, timeout=10.0)
+    except asyncio.TimeoutError:
+        await ctx.send("Sorry Times up!!")
     
     if message:
         if e_generator.check_answer(message.content):
             await ctx.send("Correct!")
         else:
             await ctx.send("Wrong! {}".format(e_generator.answer))
-    elif message is None:
-        await ctx.send("TIMEOUT")
     
     
     
 #token
-client.run('')
+client.run('ODMxNzc3NzU5MTg0Mjg5Nzk5.YHaLZw.qHMCsYwE8G-GKZkaur_3CRnsMZY')
