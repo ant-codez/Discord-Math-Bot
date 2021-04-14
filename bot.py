@@ -1,6 +1,7 @@
 import discord
 import random
 import asyncio
+import os
 from discord.ext import commands
 from equation_generator import EquationGenerator
 
@@ -47,4 +48,5 @@ async def math(ctx):
     
     
 #token
-client.run('')
+token = os.environ['DISCORD_TOKEN']
+client.run(token)
