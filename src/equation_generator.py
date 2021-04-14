@@ -18,5 +18,5 @@ class EquationGenerator:
         self.answer = self.operations[operation](op1, op2)
         return "{} {} {} = ".format(op1, operation, op2)
 
-    def check_answer(self, answer: str):
+    def check_answer(self, answer: str) -> bool:
         return self.answer == int(answer)
