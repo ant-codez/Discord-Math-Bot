@@ -22,7 +22,7 @@ class EquationGenerator:
         return "{} {} {} = ".format(op1, operation, op2)
 
     def check_answer(self, answer: str):
-        if int(answer):
+        if int(answer) or float(answer):
             return self.answer == int(answer)
         else:
             return False
