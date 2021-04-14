@@ -47,4 +47,4 @@ async def math(ctx):
     
     
 #token
-client.run('ODMxNzc3NzU5MTg0Mjg5Nzk5.YHaLZw.qHMCsYwE8G-GKZkaur_3CRnsMZY')
+client.run('')
