@@ -13,8 +13,8 @@ class EquationGenerator:
 
     # Generates an equation with one of the operations as a parameter: +, /, *, -
     def generate(self, operation: str): 
-        op1: int = random.randint(0, 10)
-        op2: int = random.randint(0, 10)
+        op1: int = random.randint(1, 10)
+        op2: int = random.randint(1, 10)
         print("{} {} {} = ".format(op1, operation, op2))
         self.answer = self.operations[operation](op1, op2)
 
