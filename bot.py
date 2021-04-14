@@ -28,6 +28,7 @@ async def ping(ctx):
 #seperates input by whitespace
 @client.command()
 async def math(ctx):
+    print(f"Sent by user {ctx.author.id}")
     q = e_generator.generate(op_list[random.randint(0, len(op_list) - 1)])
     await ctx.send(q)
     
