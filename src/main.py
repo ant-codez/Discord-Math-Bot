@@ -8,7 +8,9 @@ def main(args=None):
 
     while True:
 
-        e_generator.generate(op_list[random.randint(0, len(op_list) - 1)])
+        # use a random operator
+        op = op_list[random.randint(0, len(op_list) - 1)]
+        print(e_generator.generate(op))
         answer = input(">> ")
         if e_generator.check_answer(answer):
             print("Correct!")
