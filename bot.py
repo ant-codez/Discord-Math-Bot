@@ -31,9 +31,11 @@ async def ping(ctx):
 @client.command()
 async def math(ctx):
     print(f"Sent by user id ={ctx.author.id} name = {ctx.author.name}")
-    key = db.user_id_exists(ctx.author.id)
-    if key == None: # user is not in database
-        key = db.create_user(ctx.author.id, ctx.author.name)
+    user_record = db.record_from_user_id(ctx.author.id)
+    if user_record == None: # user is not in database
+        user_record = db.create_user(ctx.author.id, ctx.author.name)
+
+    user_key, user_id, username, correct, incorrect, source = user_record
 
     print(db.select_all())
     
@@ -50,17 +52,21 @@ async def math(ctx):
     
     if message:
         if e_generator.check_answer(message.content):
-            db.inc_correct(id)
+            db.inc_correct(user_key)
             await ctx.send("Correct!")
         else:
-            db.inc_incorrect(id)
+            db.inc_incorrect(user_key)
             await ctx.send("Wrong! {}".format(e_generator.answer))
 
-    await ctx.send("Score = {} to {}".format(db.get_correct(id), db.get_incorrect(id)))
+    user_record = db.record_from_key(user_key)
+    user_key, user_id, username, correct, incorrect, source = user_record
+    await ctx.send(f"{user_key} is your key {username}, you have {correct} correct and {incorrect} incorrect!")
+
+    #await ctx.send("Score = {} to {}".format(db.get_correct(key[0]), db.get_incorrect(key[0])))
     
     
     
 #token
-token = "ODMxNzc3NzU5MTg0Mjg5Nzk5.YHaLZw.t3jl8v0ek6tgVeONsLq2h-qTQ_o"
+token = "ODMxNzc3NzU5MTg0Mjg5Nzk5.YHaLZw.ZUnhxmisamAYOl6Q3rr1kdHHwUc"
 #token = os.environ['DISCORD_TOKEN']
 client.run(token)

@@ -46,13 +46,6 @@ class Database:
         # commit and unbind cursor
         self.cursor.close()
 
-    ###############################################
-    ###############################################
-
-    #TODO: Figure out the correct queries to write
-
-    ###############################################
-    ###############################################
     def select_all(self):
         # bind the cursor
         self.cursor = self.session.cursor()
@@ -75,7 +68,7 @@ class Database:
         self.cursor.close()
         return records
 
-    def user_id_exists(self, user_id):
+    def record_from_user_id(self, user_id: int):
         # bind the cursor
         self.cursor = self.session.cursor()
 
@@ -83,7 +76,7 @@ class Database:
 
         # find user_id that we are looking for
         self.cursor.execute(f"""
-            select key
+            select *
             from person
             where "user_id" = {user_id};
         """)
@@ -110,39 +103,41 @@ class Database:
 
         print(f"created user: {username}!")
 
-        return self.user_id_exists(user_id)
+        return self.record_from_user_id(user_id)
 
-    def inc_correct(self, key):
+    def inc_correct(self, key: int):
         self.commit_query(f"""
             update person set "correct" = "correct" + 1 where "key" = {key};
         """)
 
-    def inc_incorrect(self, key):
+    def inc_incorrect(self, key: int):
         self.commit_query(f"""
             update person set "incorrect" = "incorrect" + 1 where "key" = {key};
         """)
 
-    def get_correct(self, key):
+    def record_from_key(self, key: int):
+        # bind the cursor
         self.cursor = self.session.cursor()
 
-        self.query(f"""
-            select "correct" from person where "key" = {key};
-        """)
+        print("checking if user exists...")
 
-        record = self.cursor.fetchone()
-        self.cursor.close()
-
-        return record
-
-    def get_incorrect(self, key):
-        self.cursor = self.session.cursor()
-
+        # find user_id that we are looking for
         self.cursor.execute(f"""
-            select "incorrect" from person where "key" = {key};
+            select *
+            from person
+            where "key" = {key};
         """)
 
-        record = self.cursor.fetchone()
+        # fetch the record from our execution
+        user_record = self.cursor.fetchone()
+
+        if user_record == None:
+            print("user does not exist!")
+        else:
+            print("user exists!")
+
+        # close the cursor
         self.cursor.close()
 
-        return record
-
+        # return it, it's either going to be None or a tuple
+        return user_record
