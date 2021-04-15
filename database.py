@@ -83,7 +83,7 @@ class Database:
 
         # find user_id that we are looking for
         self.cursor.execute(f"""
-            select id
+            select key
             from person
             where "user_id" = {user_id};
         """)
@@ -112,26 +112,21 @@ class Database:
 
         return self.user_id_exists(user_id)
 
-    def inc_correct(self, id):
+    def inc_correct(self, key):
         self.commit_query(f"""
-            update person
-            set "correct" = "correct" + 1;
-            where "id" = {id};
+            update person set "correct" = "correct" + 1 where "key" = {key};
         """)
 
-    def inc_incorrect(self, id):
+    def inc_incorrect(self, key):
         self.commit_query(f"""
-            update person
-            set "incorrect" = "incorrect" + 1;
-            where "id" = {id};
+            update person set "incorrect" = "incorrect" + 1 where "key" = {key};
         """)
 
-    def get_correct(self, id):
+    def get_correct(self, key):
         self.cursor = self.session.cursor()
 
         self.query(f"""
-            select "correct" from person
-            where "id" = {id};
+            select "correct" from person where "key" = {key};
         """)
 
         record = self.cursor.fetchone()
@@ -139,12 +134,11 @@ class Database:
 
         return record
 
-    def get_incorrect(self, id):
+    def get_incorrect(self, key):
         self.cursor = self.session.cursor()
 
         self.cursor.execute(f"""
-            select "incorrect" from person
-            where "id" = {id};
+            select "incorrect" from person where "key" = {key};
         """)
 
         record = self.cursor.fetchone()

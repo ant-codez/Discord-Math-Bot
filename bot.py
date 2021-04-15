@@ -61,6 +61,6 @@ async def math(ctx):
     
     
 #token
-token = "ODMxNzc3NzU5MTg0Mjg5Nzk5.YHaLZw.hTdphipQluSQfWEe4gMr4aWEits"
+token = "ODMxNzc3NzU5MTg0Mjg5Nzk5.YHaLZw.t3jl8v0ek6tgVeONsLq2h-qTQ_o"
 #token = os.environ['DISCORD_TOKEN']
 client.run(token)
