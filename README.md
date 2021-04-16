@@ -3,7 +3,7 @@ A discord bot that generates math questions and keeps track of each users # of c
 
 ## Adding To Your Server
 To add the bot to your server use this link:
-* [a Discord Math Bot] (https://discord.com/api/oauth2/authorize?client_id=831777759184289799&permissions=8&scope=bot)
+* [Discord Math Bot](https://discord.com/api/oauth2/authorize?client_id=831777759184289799&permissions=8&scope=bot)
 
 ## Usage
 To use this bot type in a channel that give the bot permission to read and write.
