@@ -1,4 +1,4 @@
-# Discord Math Bot :heavy_multiplication_x:
+# Discord Math Bot :x: :heavy_division_sign:
 A discord bot that generates math questions and keeps track of each users # of correct and incorrect answers
 
 ## Adding To Your Server :factory:
