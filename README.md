@@ -10,20 +10,27 @@ To use this bot type in a channel that give the bot permission to read and write
 
 Commands:
 
-`$math` - generates and prints math question, then waits for a response
+* `$math` - generates and prints math question, then waits for a response
 
 ## Program Flow
 This program starts at `bot.py` and uses `equation_generator.py` to generate equations and `database.py` to inteface with out PostgreSQL database
 
 ## Running This Program
 If you are trying to run this program on your machine then you need
-a bot `token` from discord. Once you get one, go to the bottom of `bot.py` and paste your token there
+a bot `token` from discord. Once you get one, go to the bottom of `bot.py` and paste your token there in the `token` variable
 
 ## Dependencies
-discord.py
+* discord.py
+
 `pip install discord`
-psycopg2
+
+
+* psycopg2
+
 `pip install psycopg2`
-PyYAML
+
+
+* PyYAML
+
 `pip install pyyaml`
 
