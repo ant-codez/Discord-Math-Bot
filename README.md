@@ -20,17 +20,14 @@ If you are trying to run this program on your machine then you need
 a bot `token` from discord. Once you get one, go to the bottom of `bot.py` and paste your token there in the `token` variable
 
 ## Dependencies
-* discord.py
-
+discord
 `pip install discord`
 
 
-* psycopg2
-
+psycopg2
 `pip install psycopg2`
 
 
-* PyYAML
-
+PyYAML
 `pip install pyyaml`
 
